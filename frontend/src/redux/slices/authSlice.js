@@ -1,0 +1,137 @@
+// import { createSlice } from "@reduxjs/toolkit";
+// const initialState={
+//     user:null,
+//     token:localStorage.getItem("token") || null,
+//     isAuthenticated:false,
+//     isLoading:true,
+//     error:null,
+// }
+
+// const authSlice=createSlice({
+//     name:"auth",
+//     initialState,
+//     reducers:{
+//         //set loading state during api calls(login,register,fetchuser)
+//         setLoading:(state,action)=>{
+//             state.isLoading=action.payload;
+//             state.error=null;
+//         },
+
+//         //set user after successful login register and fetch user
+//         //also stroes token in local storage for persistence
+//         setUser:(state,action)=>{
+//            state.user=action.payload.user;
+//            state.token=action.payload.token;
+
+//            state.isAuthenticated=true;
+
+//            state.isLoading=false;
+//            state.error=null;
+
+//            if(action.payload.token)
+//            {
+//             localStorage.setItem("token",action.payload.token);
+//            }
+//         },
+
+//         setError:(state,action)=>{
+//              state.error=action.payload;
+//              state.isLoading=false;
+//         },
+        
+//         //Clear all auth state and remove token from local storage
+//         logout:(state)=>{
+//             state.user=null;
+//             state.token=null;
+//             state.isAuthenticated=false;
+//             state.error=null;
+//             localStorage.removeItem("token");
+//         },
+
+//         udateFavourites:(state,action)=>{
+//             if(state.user)
+//             {
+//                 state.user.favourites=action.payload
+//             }
+//         },
+
+//         clearError:(state)=>{
+//             state.error=null;
+//         }
+//     },
+
+
+// })
+
+// export const{setLoading,setUser,setError,logout,clearError,udateFavourites}=authSlice.actions;
+
+// export default authSlice.reducer;
+
+import { createSlice } from "@reduxjs/toolkit";
+const initialState={
+    user:null,
+    token:localStorage.getItem("token") || null,
+    isAuthenticated:false,
+    isLoading:false,
+    error:null,
+}
+
+const authSlice=createSlice({
+    name:"auth",
+    initialState,
+    reducers:{
+        //set loading state during api calls(login,register,fetchuser)
+        setLoading:(state,action)=>{
+            state.isLoading=action.payload;
+            state.error=null;
+        },
+
+        //set user after successful login register and fetch user
+        //also stroes token in local storage for persistence
+        setUser:(state,action)=>{
+           state.user=action.payload.user;
+           state.token=action.payload.token;
+
+           state.isAuthenticated=true;
+
+           state.isLoading=false;
+           state.error=null;
+
+           if(action.payload.token)
+           {
+            localStorage.setItem("token",action.payload.token);
+           }
+        },
+
+        setError:(state,action)=>{
+             state.error=action.payload;
+             state.isLoading=false;
+        },
+        
+        //Clear all auth state and remove token from local storage
+        logout:(state)=>{
+            state.user=null;
+            state.token=null;
+            state.isAuthenticated=false;
+            state.error=null;
+            localStorage.removeItem("token");
+        },
+
+        udateFavourites:(state,action)=>{
+            if(state.user)
+            {
+                state.user.favourites=action.payload
+            }
+        },
+
+        clearError:(state)=>{
+            state.error=null;
+        }
+    },
+
+
+})
+
+export const{setLoading,setUser,setError,logout,clearError,udateFavourites}=authSlice.actions;
+
+export default authSlice.reducer;
