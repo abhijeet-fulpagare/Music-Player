@@ -8,7 +8,7 @@ import Signup from "./components/auth/Signup";
 import { useDispatch, useSelector } from "react-redux";
 import { clearError, logout, setError, setLoading, setUser } from "./redux/slices/authSlice";
 import axios from "axios";
-import ResetPassword from "./components/auth/resetPassword";
+import ResetPassword from "./components/auth/ResetPassword";
 
 
 
